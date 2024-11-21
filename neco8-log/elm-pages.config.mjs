@@ -2,11 +2,29 @@ import { defineConfig } from "vite";
 import adapter from "./github-pages-adapter.mjs";
 
 export default {
-  adapter,
   vite: defineConfig({
     build: {
+      // 出力を最小限に
       outDir: "../dist",
+      emptyOutDir: true,
+      // 必要最小限のファイルのみ出力
+      rollupOptions: {
+        output: {
+          entryFileNames: "assets/[name].js",
+          chunkFileNames: "assets/[name].js",
+          assetFileNames: "assets/[name][extname]",
+        },
+      },
+      // アセットの最適化
+      minify: true,
+      sourcemap: false,
     },
+    // 静的アセットの処理
+    assetsInclude: ["**/*.elm"],
+    // プラグインの設定
+    plugins: [],
+    // GitHub Pages用のベースパス設定
+    base: "/neco8.log/",
   }),
   headTagsTemplate(context) {
     return `
