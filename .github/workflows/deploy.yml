@@ -7,42 +7,42 @@ permissions:
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     defaults:
       run:
         working-directory: ./neco8-log
-
+    
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-
+          node-version: '20'
+          
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
-
-      - name: Setup Elm
-        run: |
-          curl -L -o elm.gz https://github.com/elm/compiler/releases/download/0.19.1/binary-for-linux-64-bit.gz
-          gunzip elm.gz
-          chmod +x elm
-          sudo mv elm /usr/local/bin/
-
+          
       - name: Install dependencies
         run: pnpm install
-
+          
       - name: Build site
         run: pnpm run build
 
+      # Elm Publishステップを追加
+      - name: Elm Publish
+        uses: dillonkearns/elm-publish-action@c42e6b74c43830ba50fcd0b5bd1a99baf3cb350f
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-elm: ./node_modules/.bin/elm
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
