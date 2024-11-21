@@ -37,39 +37,15 @@ jobs:
           chmod +x elm
           sudo mv elm /usr/local/bin/
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/neco8-log/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
       - name: Install dependencies
-        run: |
-          pnpm install
+        run: pnpm install
 
       - name: Build site
-        env:
-          BASE_PATH: /neco8.log
         run: pnpm run build
-
-      # デバッグ用のステップを追加
-      - name: List dist directory
-        run: ls -la dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./neco8-log/dist
-          # 以下のオプションを追加
-          force_orphan: true # gh-pagesブランチを完全にクリーンな状態で作成
-          exclude_assets: "" # 除外ファイルなし
-          enable_jekyll: false # Jekyll処理を無効化
+          force_orphan: true

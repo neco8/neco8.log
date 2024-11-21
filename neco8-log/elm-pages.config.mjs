@@ -2,7 +2,26 @@ import { defineConfig } from "vite";
 import adapter from "elm-pages/adapter/netlify.js";
 
 export default {
-  vite: defineConfig({}),
+  vite: defineConfig({
+    build: {
+      // GitHub Pagesのベースパスに合わせる
+      base: "/neco8.log/",
+      // ビルド出力の設定
+      outDir: "dist",
+      // elm-pagesのビルド出力を直接distに配置
+      rollupOptions: {
+        input: {
+          main: "elm-stuff/elm-pages/index.html",
+        },
+        output: {
+          dir: "dist",
+          // アセットのファイル名パターン
+          assetFileNames: "assets/[name]-[hash][extname]",
+          entryFileNames: "assets/[name]-[hash].js",
+        },
+      },
+    },
+  }),
   adapter,
   headTagsTemplate(context) {
     return `
