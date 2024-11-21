@@ -53,4 +53,4 @@ run params =
             ]
         )
         (Decode.list resultDecoder)
-        |> BackendTask.mapError .fatal
+        |> BackendTask.allowFatal

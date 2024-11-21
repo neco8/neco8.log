@@ -6,13 +6,18 @@ import FatalError exposing (FatalError)
 import Head
 import SiteConfig exposing (SiteConfig)
 
+
 config : SiteConfig
 config =
-    { canonicalUrl = "https://elm-pages.com"
+    { canonicalUrl = "http://localhost:1234"
     , head = head
     }
 
+
+
 -- ファイル変換を行うBackendTask
+
+
 convertFiles : BackendTask FatalError (List ConvertMarkdownFiles.ConversionResult)
 convertFiles =
     ConvertMarkdownFiles.run
@@ -24,7 +29,11 @@ convertFiles =
             ]
         }
 
+
+
 -- head タグを生成するBackendTask
+
+
 head : BackendTask FatalError (List Head.Tag)
 head =
     convertFiles
@@ -32,6 +41,7 @@ head =
             (\_ ->
                 BackendTask.succeed
                     [ Head.metaName "viewport" (Head.raw "width=device-width,initial-scale=1")
-                    , Head.sitemapLink "/sitemap.xml"
+                    , Head.metaName "charset" (Head.raw "utf-8")
+                    , Head.metaName "content-type" (Head.raw "text/html; charset=utf-8")
                     ]
             )
