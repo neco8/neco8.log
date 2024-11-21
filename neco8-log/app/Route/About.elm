@@ -1,4 +1,4 @@
-module Route.Article exposing (Model, Msg, RouteParams, route, Data, ActionData)
+module Route.About exposing (Model, Msg, RouteParams, route, Data, ActionData)
 
 {-|
 
@@ -8,14 +8,11 @@ module Route.Article exposing (Model, Msg, RouteParams, route, Data, ActionData)
 
 import BackendTask
 import Effect
-import ErrorPage
 import FatalError
 import Head
-import Head.Seo as Seo
+import Html
 import PagesMsg
 import RouteBuilder
-import Server.Request
-import Server.Response
 import Shared
 import UrlPath
 import View
@@ -35,10 +32,10 @@ type alias RouteParams =
 
 route : RouteBuilder.StatelessRoute RouteParams Data ActionData
 route =
-    RouteBuilder.serverRender
-        { data = data
-        , action = action
+    RouteBuilder.preRender
+        { data = \_ -> data
         , head = head
+        , pages = BackendTask.succeed []
         }
         |> RouteBuilder.buildNoState
             { view = view
@@ -63,22 +60,17 @@ type alias Data =
 
 
 type alias ActionData =
-    {}
+    BackendTask.BackendTask FatalError.FatalError (List RouteParams)
 
 
-data :
-    RouteParams
-    -> Server.Request.Request
-    -> BackendTask.BackendTask FatalError.FatalError (Server.Response.Response Data ErrorPage.ErrorPage)
-data routeParams request =
-    BackendTask.succeed (Server.Response.render {})
+data : BackendTask.BackendTask FatalError.FatalError Data
+data =
+    BackendTask.succeed {}
 
 
 head : RouteBuilder.App Data ActionData RouteParams -> List Head.Tag
 head app =
-    Shared.seo
-        |> Seo.summary
-        |> Seo.website
+    []
 
 
 view :
@@ -86,12 +78,4 @@ view :
     -> Shared.Model
     -> View.View (PagesMsg.PagesMsg Msg)
 view app shared =
-    { title = "Article", body = [] }
-
-
-action :
-    RouteParams
-    -> Server.Request.Request
-    -> BackendTask.BackendTask FatalError.FatalError (Server.Response.Response ActionData ErrorPage.ErrorPage)
-action routeParams request =
-    BackendTask.succeed (Server.Response.render {})
+    { title = "About", body = [ Html.h2 [] [ Html.text "New Page" ] ] }

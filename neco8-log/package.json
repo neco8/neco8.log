@@ -3,7 +3,7 @@
   "scripts": {
     "postinstall": "elm-tooling install",
     "start": "elm-pages dev",
-    "build": "elm-pages build"
+    "build": "elm-pages build --base /neco8.log"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

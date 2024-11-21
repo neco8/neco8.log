@@ -122,7 +122,7 @@ view sharedData page model toMsg pageView =
                                 ]
                             , Html.li []
                                 [ Html.a
-                                    [ Html.Attributes.href "/archive", Html.Attributes.class "hover:text-stone-900" ]
+                                    [ Html.Attributes.href "/blog", Html.Attributes.class "hover:text-stone-900" ]
                                     [ Html.text "記録" ]
                                 ]
                             ]

@@ -4,13 +4,11 @@ import BackendTask exposing (BackendTask)
 import BackendTask.File as File
 import BackendTask.Glob as Glob
 import BlogPost exposing (BlogPost, blogPostDecoder, getAroundPost, omitAndTrim, viewPostDetail)
-import Elm.Let exposing (letIn)
 import FatalError exposing (FatalError)
 import Head
 import Head.Seo as Seo
 import Html exposing (..)
 import Markdown.Block exposing (ListItem(..))
-import Pages.Url
 import PagesMsg exposing (PagesMsg)
 import RouteBuilder exposing (App, StatelessRoute)
 import Shared
