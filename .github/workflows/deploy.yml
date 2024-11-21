@@ -35,13 +35,6 @@ jobs:
           
       - name: Build site
         run: pnpm run build
-
-      # Elm Publishステップを追加
-      - name: Elm Publish
-        uses: dillonkearns/elm-publish-action@c42e6b74c43830ba50fcd0b5bd1a99baf3cb350f
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-elm: ./node_modules/.bin/elm
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
