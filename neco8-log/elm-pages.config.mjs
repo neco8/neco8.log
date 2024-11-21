@@ -5,7 +5,7 @@ export default {
   vite: defineConfig({
     build: {
       // 出力を最小限に
-      outDir: "../dist",
+      outDir: "dist",
       emptyOutDir: true,
       // 必要最小限のファイルのみ出力
       rollupOptions: {
