@@ -76,31 +76,6 @@ data =
     BackendTask.succeed ()
 
 
-viewArticle : () -> Html msg
-viewArticle () =
-    Html.article
-        []
-        [ Html.time
-            [ Html.Attributes.class "text-xs tracking-wider text-stone-400" ]
-            [ Html.text "2024年11月20日" ]
-        , Html.h2
-            [ Html.Attributes.class "mt-1 text-base text-stone-900 tracking-wider leading-normal" ]
-            [ Html.a
-                [ Html.Attributes.href "/post-1", Html.Attributes.class "hover:text-stone-600" ]
-                [ Html.text "TypeScriptによるReactアプリケーション開発入門" ]
-            ]
-        , Html.p
-            [ Html.Attributes.class "mt-2 text-xs leading-relaxed text-stone-600" ]
-            [ Html.text "型安全性の確保されたReactアプリケーションの構築方法について。コンポーネントの基本的な型定義から、より複雑なケースまでを解説します。状態管理における型の活用と、開発効率の向上について考察します。" ]
-        , Html.div
-            [ Html.Attributes.class "mt-4 text-xs" ]
-            [ Html.a
-                [ Html.Attributes.href "/post-1", Html.Attributes.class "text-stone-400 transition-colors duration-500 hover:text-stone-800" ]
-                [ Html.text "続きを読む →" ]
-            ]
-        ]
-
-
 title : String
 title =
     "neco8.log"
@@ -124,8 +99,10 @@ view sharedData page model toMsg pageView =
                 [ Html.Attributes.class "py-8" ]
                 [ Html.div
                     [ Html.Attributes.class "px-4 grid place-items-center" ]
-                    [ Html.h1
-                        [ Html.Attributes.class "justify-center text-[160px] max-lg:text-8xl text-nowrap text-center text-stone-800" ]
+                    [ Html.a
+                        [ Html.Attributes.class "justify-center text-[160px] max-lg:text-8xl text-nowrap text-center text-stone-800"
+                        , Html.Attributes.href "/"
+                        ]
                         [ Html.text title ]
                     , Html.nav
                         [ Html.Attributes.class "w-full px-4 max-lg:mt-6 mb-20 border-y border-stone-200" ]
@@ -152,9 +129,7 @@ view sharedData page model toMsg pageView =
                 ]
             , Html.main_
                 [ Html.Attributes.class "max-w-xl mx-auto px-4 py-8 space-y-10" ]
-                [ viewArticle ()
-                , viewArticle ()
-                ]
+                pageView.body
             , Html.footer
                 [ Html.Attributes.class "py-8" ]
                 [ Html.div
