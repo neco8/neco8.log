@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
+import adapter from "./github-pages-adapter.mjs";
 
 export default {
+  adapter,
   vite: defineConfig({}),
   headTagsTemplate(context) {
     return `
