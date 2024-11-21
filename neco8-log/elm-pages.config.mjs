@@ -3,7 +3,11 @@ import adapter from "./github-pages-adapter.mjs";
 
 export default {
   adapter,
-  vite: defineConfig({}),
+  vite: defineConfig({
+    build: {
+      outDir: "../dist",
+    },
+  }),
   headTagsTemplate(context) {
     return `
 <link rel="stylesheet" href="/style.css" />
