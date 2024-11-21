@@ -36,6 +36,10 @@ jobs:
       - name: Build site
         run: pnpm run build
         
+      - name: Prepare for deployment
+        run: |
+          cp dist/template.html dist/index.html
+        
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
