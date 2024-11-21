@@ -1,9 +1,7 @@
 module Route.Index exposing (ActionData, Data, Model, Msg, route)
 
 import BackendTask exposing (BackendTask)
-import BackendTask.File exposing (bodyWithFrontmatter)
-import BackendTask.Glob as Glob
-import BlogPost exposing (BlogPost, blogPostDecoder, viewPost)
+import BlogPost exposing (BlogPost, getBlogPosts, viewPost)
 import FatalError exposing (FatalError)
 import Head
 import Head.Seo as Seo
@@ -14,7 +12,6 @@ import RouteBuilder exposing (App, StatelessRoute)
 import Shared
 import UrlPath
 import View exposing (View)
-import BlogPost exposing (getBlogPosts)
 
 
 type alias Model =
@@ -61,19 +58,8 @@ head :
     App Data ActionData RouteParams
     -> List Head.Tag
 head _ =
-    Seo.summary
-        { canonicalUrlOverride = Nothing
-        , siteName = "elm-pages"
-        , image =
-            { url = [ "images", "icon-png.png" ] |> UrlPath.join |> Pages.Url.fromPath
-            , alt = "elm-pages logo"
-            , dimensions = Nothing
-            , mimeType = Nothing
-            }
-        , description = "Welcome to elm-pages!"
-        , locale = Nothing
-        , title = "elm-pages is running"
-        }
+    Shared.seo
+        |> Seo.summary
         |> Seo.website
 
 
@@ -82,7 +68,7 @@ view :
     -> Shared.Model
     -> View (PagesMsg Msg)
 view app _ =
-    { title = "elm-pages is running"
+    { title = Shared.title
     , body =
         List.map viewPost app.data.blogPosts
     }

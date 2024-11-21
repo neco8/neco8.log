@@ -4,6 +4,7 @@ import BackendTask exposing (BackendTask)
 import BackendTask.File as File
 import BackendTask.Glob as Glob
 import BlogPost exposing (BlogPost, blogPostDecoder, getAroundPost, omitAndTrim, viewPostDetail)
+import Elm.Let exposing (letIn)
 import FatalError exposing (FatalError)
 import Head
 import Head.Seo as Seo
@@ -74,18 +75,14 @@ head :
     App Data ActionData RouteParams
     -> List Head.Tag
 head app =
+    let
+        seo =
+            Shared.seo
+    in
     Seo.summary
-        { canonicalUrlOverride = Nothing
-        , siteName = "My Blog"
-        , image =
-            { url = Pages.Url.external "TODO"
-            , alt = "Blog logo"
-            , dimensions = Nothing
-            , mimeType = Nothing
-            }
-        , description = app.data.post.content |> omitAndTrim
-        , locale = Nothing
-        , title = app.data.post.title
+        { seo
+            | description = app.data.post.content |> omitAndTrim
+            , title = app.data.post.title
         }
         |> Seo.website
 

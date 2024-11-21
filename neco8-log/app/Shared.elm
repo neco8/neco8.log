@@ -1,12 +1,14 @@
-module Shared exposing (Data, Model, Msg(..), SharedMsg(..), template)
+module Shared exposing (Data, Model, Msg(..), SharedMsg(..), seo, template, title)
 
 import BackendTask exposing (BackendTask)
 import Effect exposing (Effect)
 import FatalError exposing (FatalError)
+import Head.Seo as Seo
 import Html exposing (Html)
 import Html.Attributes
 import Pages.Flags
 import Pages.PageUrl exposing (PageUrl)
+import Pages.Url
 import Route exposing (Route)
 import SharedTemplate exposing (SharedTemplate)
 import UrlPath exposing (UrlPath)
@@ -142,4 +144,19 @@ view sharedData page model toMsg pageView =
             ]
         ]
     , title = pageView.title
+    }
+
+
+seo =
+    { canonicalUrlOverride = Nothing
+    , siteName = title
+    , image =
+        { url = [ "images", "icon-png.png" ] |> UrlPath.join |> Pages.Url.fromPath
+        , alt = "elm-pages logo"
+        , dimensions = Nothing
+        , mimeType = Nothing
+        }
+    , description = "neco8 の きろく"
+    , locale = Nothing
+    , title = title
     }

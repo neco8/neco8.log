@@ -11,6 +11,7 @@ import Effect
 import ErrorPage
 import FatalError
 import Head
+import Head.Seo as Seo
 import Html
 import PagesMsg
 import RouteBuilder
@@ -91,7 +92,9 @@ data routeParams request =
 
 head : RouteBuilder.App Data ActionData RouteParams -> List Head.Tag
 head app =
-    []
+    Shared.seo
+        |> Seo.summary
+        |> Seo.website
 
 
 view :

@@ -1,16 +1,17 @@
-module Route.Blog exposing (ActionData, Data, Model, Msg, RouteParams, route)
+module Route.Blog exposing (Model, Msg, RouteParams, route, Data, ActionData)
 
-{-| 
+{-|
+
 @docs Model, Msg, RouteParams, route, Data, ActionData
--}
 
+-}
 
 import BackendTask
 import Effect
 import ErrorPage
 import FatalError
 import Head
-import Html
+import Head.Seo as Seo
 import PagesMsg
 import RouteBuilder
 import Server.Request
@@ -38,12 +39,13 @@ route =
         { data = data
         , action = action
         , head = head
-        } |> RouteBuilder.buildWithLocalState
-                     { view = view
-                     , init = init
-                     , update = update
-                     , subscriptions = subscriptions
-                     }
+        }
+        |> RouteBuilder.buildWithLocalState
+            { view = view
+            , init = init
+            , update = update
+            , subscriptions = subscriptions
+            }
 
 
 init :
@@ -66,8 +68,7 @@ update app shared msg model =
             ( model, Effect.none )
 
 
-subscriptions :
-    RouteParams -> UrlPath.UrlPath -> Shared.Model -> Model -> Sub Msg
+subscriptions : RouteParams -> UrlPath.UrlPath -> Shared.Model -> Model -> Sub Msg
 subscriptions routeParams path shared model =
     Sub.none
 
@@ -90,7 +91,9 @@ data routeParams request =
 
 head : RouteBuilder.App Data ActionData RouteParams -> List Head.Tag
 head app =
-    []
+    Shared.seo
+        |> Seo.summary
+        |> Seo.website
 
 
 view :
