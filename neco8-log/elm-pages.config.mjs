@@ -19,10 +19,6 @@ export default {
       minify: true,
       sourcemap: false,
     },
-    // 静的アセットの処理
-    assetsInclude: ["**/*.elm"],
-    // プラグインの設定
-    plugins: [],
   }),
   headTagsTemplate(context) {
     return `
