@@ -23,8 +23,6 @@ export default {
     assetsInclude: ["**/*.elm"],
     // プラグインの設定
     plugins: [],
-    // GitHub Pages用のベースパス設定
-    base: "/neco8.log/",
   }),
   headTagsTemplate(context) {
     return `
