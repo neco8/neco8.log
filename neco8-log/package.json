@@ -18,6 +18,8 @@
     "vite": "^5.3.3"
   },
   "dependencies": {
-    "@netlify/functions": "^2.4.1"
+    "@netlify/functions": "^2.4.1",
+    "fast-glob": "^3.3.2",
+    "gray-matter": "^4.0.3"
   }
 }
