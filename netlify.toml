@@ -2,6 +2,7 @@
   functions = "functions/"
   publish = "dist/"
   command = "export ELM_HOME=\"$NETLIFY_BUILD_BASE/cache/elm\" && npm install && npm run build"
+  base = ""
 
 [dev]
   command = "npm start"
