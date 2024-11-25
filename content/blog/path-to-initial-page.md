@@ -1,7 +1,8 @@
 ---
-published: "2024-10-23"
-path: "path-to-initial-page"
+published: '2024-10-23'
+path: path-to-initial-page
 tags: []
+title: 試しにアップロード
 ---
 
 これが、一番最初のページです。

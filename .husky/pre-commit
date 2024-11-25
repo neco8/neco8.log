@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# content/blog/*を削除
+rm -rf content/blog/*
+
+# npm run buildを実行
+npm run build
+
+# content/blog/*を再度git addする
+git add content/blog/*
