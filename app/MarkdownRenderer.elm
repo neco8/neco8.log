@@ -69,7 +69,7 @@ detailRenderer =
         \{ destination } children ->
             a
                 [ href destination
-                , class "text-blue-600 hover:underline visited:text-purple-400"
+                , class "text-blue-600 hover:underline visited:text-purple-400 underline"
                 ]
                 children
     , image =
@@ -83,7 +83,7 @@ detailRenderer =
     , unorderedList =
         \items ->
             ul
-                [ class "space-y-2 mt-2 pl-3 text-stone-600 text-xs" ]
+                [ class "pl-3 text-stone-600 text-xs" ]
                 (List.map
                     (\(ListItem task item) ->
                         let
@@ -126,7 +126,7 @@ detailRenderer =
     , orderedList =
         \_ items ->
             ol
-                [ class "space-y-2 mt-2 pl-3 text-stone-600 text-xs" ]
+                [ class "pl-3 text-stone-600 text-xs" ]
                 (List.indexedMap
                     (\idx item ->
                         let

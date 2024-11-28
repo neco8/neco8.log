@@ -7,5 +7,7 @@ rm -rf content/blog/*
 # npm run buildを実行
 npm run build
 
+rm -rf functions/
+
 # content/blog/*を再度git addする
 git add content/blog/*
