@@ -11,6 +11,8 @@ import Route
 import RouteBuilder exposing (App, StatelessRoute)
 import Shared
 import View exposing (View)
+import List.Extra
+import Date
 
 
 type alias Model =
@@ -80,5 +82,6 @@ view :
 view app _ =
     { title = Shared.title
     , body =
-        List.map viewPost app.data.blogPosts
+        List.map viewPost
+            <| List.sortBy (\d -> d.post.published |> Date.toRataDie |> negate) app.data.blogPosts
     }
