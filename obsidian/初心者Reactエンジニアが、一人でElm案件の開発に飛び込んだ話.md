@@ -1,6 +1,6 @@
 ---
 published: "2023-10-27"
-tags: ["programming", "functional-programming", "elm", "article"]
+tags: ["article"]
 path: "1-elm-development-in-my-early-career"
 ---
 

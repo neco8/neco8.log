@@ -1,9 +1,6 @@
 ---
 published: '2023-10-27'
 tags:
-  - programming
-  - functional-programming
-  - elm
   - article
 path: 1-elm-development-in-my-early-career
 title: 初心者Reactエンジニアが、一人でElm案件の開発に飛び込んだ話
