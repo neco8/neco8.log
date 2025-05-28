@@ -1,7 +1,8 @@
 ---
 published: "2023-10-27"
-tags: ["programming", "functional-programming", "elm", "article"]
+tags: []
 path: "1-elm-development-in-my-early-career"
+type: article
 ---
 
 Elm で開発した経験を書く。珍しいと思う。React エンジニアとして働いて間もないころである。Django とほんの数行の Vue を用いたポートフォリオを携えて、強運で受かった会社での話だ。

@@ -1,7 +1,6 @@
 ---
 published: '2025-05-28'
-tags:
-  - diary
+tags: []
 path: 9-2025-05-28-overheating
 title: 過熱する
 ---
