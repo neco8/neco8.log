@@ -1,8 +1,8 @@
 ---
 published: '2024-11-22'
-tags:
-  - article
+tags: []
 path: 2-nice-to-meet-you
+type: article
 title: はじめまして
 ---
 
